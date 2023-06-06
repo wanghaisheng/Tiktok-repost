@@ -1,3 +1,7 @@
+replace mongodb with local folder
+
+
+
 # 预览及功能介绍
 - 预览: http://43.156.63.82:5050/video_list
 - 无水印视频抓取: 包括tiktok视频; youtube视频; 抖音视频

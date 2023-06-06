@@ -39,31 +39,34 @@ def kill_orphan_chrome():
 
 
 crawler = Crawlers()
-for keyword in keywords_english.split(','):
-    try:
-        kill_orphan_chrome()
-        print(f'keyword: {keyword}')
-        if crawlers_config['Tiktok_crawler'] == 'True':
-            try:
-                crawler.tiktok_crawler(keyword)
-            except:
-                pass
-        if keyword == 'funny' or keyword == 'hot':
-            if crawlers_config['Youtube_crawler'] == 'True':
+if crawlers_config['Tiktok_crawler'] == 'True' or crawlers_config['Youtube_crawler'] == 'True':
+    for keyword in keywords_english.split(','):
+        try:
+            kill_orphan_chrome()
+            print(f'keyword: {keyword}')
+            if crawlers_config['Tiktok_crawler'] == 'True':
                 try:
-                    crawler.youtube_crawler(keyword)
+                    crawler.tiktok_crawler(keyword)
                 except:
                     pass
-        time.sleep(6)
-    except:
-        continue
-for keyword in keywords_chinese.split(','):
-    try:
-        kill_orphan_chrome()
-        print(f'keyword: {keyword}')
-        if crawlers_config['Douyin_crawler'] == 'True':
-            crawler.douyin_crawler(keyword)
-        time.sleep(6)
-    except Exception as e:
-        print(f'error: {e}')
-        continue
+            if keyword == 'funny' or keyword == 'hot':
+                if crawlers_config['Youtube_crawler'] == 'True':
+                    try:
+                        crawler.youtube_crawler(keyword)
+                    except:
+                        pass
+            time.sleep(6)
+        except:
+            continue
+if crawlers_config['Douyin_crawler'] == 'True':
+
+    for keyword in keywords_chinese.split(','):
+        try:
+            kill_orphan_chrome()
+            print(f'keyword: {keyword}')
+            if crawlers_config['Douyin_crawler'] == 'True':
+                crawler.douyin_crawler(keyword)
+            time.sleep(6)
+        except Exception as e:
+            print(f'error: {e}')
+            continue
